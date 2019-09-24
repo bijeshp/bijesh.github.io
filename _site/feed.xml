@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-09-24T16:07:55-07:00</updated><id>/feed.xml</id><title type="html">Bijesh’s Blogs</title><subtitle>Blog posts and Code samples.</subtitle><entry><title type="html">Starter Kit: A fully configured Create React App</title><link href="/starter-kit/2019/09/24/starter-kit-cra-configured.html" rel="alternate" type="text/html" title="Starter Kit: A fully configured Create React App " /><published>2019-09-24T14:33:48-07:00</published><updated>2019-09-24T14:33:48-07:00</updated><id>/starter-kit/2019/09/24/starter-kit-cra-configured</id><content type="html" xml:base="/starter-kit/2019/09/24/starter-kit-cra-configured.html">&lt;p&gt;You might find a number of starter-kits/boilerplate templates to bootstrap and application. The CRA starter kit is an extension of &lt;a href=&quot;https://github.com/facebook/create-react-app&quot;&gt;Create React App&lt;/a&gt; with necessary configuration and tool support&lt;/p&gt;
+
+&lt;p&gt;It uses following tools and technologies from the react ecosystem.&lt;/p&gt;
+
+&lt;h2 id=&quot;technologies-and-libraries&quot;&gt;Technologies and Libraries&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Application State : Redux&lt;/li&gt;
+  &lt;li&gt;Async Data Management : Redux Saga&lt;/li&gt;
+  &lt;li&gt;Declarative Routing : DOM bindings for React Router react-router-dom&lt;/li&gt;
+  &lt;li&gt;Static Type Checking :Flow&lt;/li&gt;
+  &lt;li&gt;REST API handling :Axios&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;setting-up-the-starter-kit&quot;&gt;Setting up the Starter Kit&lt;/h2&gt;
+&lt;p&gt;Download the starter-kit source files from the following &lt;a href=&quot;https://github.com/bijeshp/starter-kit-create-react-app.git&quot;&gt;link&lt;/a&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;https://github.com/bijeshp/starter-kit-create-react-app.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;code-organization&quot;&gt;Code Organization&lt;/h2&gt;
+
+&lt;p&gt;&lt;img width=&quot;831&quot; alt=&quot;Screen Shot 2019-09-24 at 3 14 52 PM&quot; src=&quot;https://user-images.githubusercontent.com/7260229/65555185-b3143f80-dee0-11e9-92ea-47f90fa4da83.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;developing-with-the-starter-kit&quot;&gt;Developing with the Starter Kit&lt;/h2&gt;
+
+&lt;p&gt;Basic Conventions&lt;/p&gt;
+&lt;h3 id=&quot;1-modules-&quot;&gt;1. Modules :&lt;/h3&gt;
+&lt;p&gt;A module is a logical grouping of related functionality, which maintain a namespace for data , routes and other related functionalities. A module typically contains the following parts&lt;/p&gt;
+&lt;h4 id=&quot;pages&quot;&gt;Pages&lt;/h4&gt;
+&lt;p&gt;Defines a Container component and mounted on a route, Pages are the only connected components in a module. Data will be passed to the child components via props.All the page level components are defined in the components folder of each page.
+Note : Its import to connect the reqStatus, isLoading,serviceError properties in each page as standard which helps to handle application state during the asynchronous data fetching.&lt;/p&gt;
+&lt;h4 id=&quot;indexjs&quot;&gt;index.js&lt;/h4&gt;
+&lt;p&gt;Index.js of the module exports all the pages in the module. For example&lt;/p&gt;
+&lt;h4 id=&quot;routesjs&quot;&gt;routes.js&lt;/h4&gt;
+&lt;p&gt;routes.js registers the routing for the module pages and the respective components to be mounted on the routes. For example&lt;/p&gt;
+&lt;h4 id=&quot;reducerjs&quot;&gt;reducer.js&lt;/h4&gt;
+&lt;p&gt;This defines the module reducer. Every reducer must contain following properties as default which helps to handle the application state during the asynchronous data fetching&lt;/p&gt;
+&lt;h4 id=&quot;actions&quot;&gt;actions&lt;/h4&gt;
+&lt;p&gt;The &lt;em&gt;action.type.js &lt;/em&gt;file defines the constants for all action types of the modules and the index.js file in the action directory defines all the actions for the module Note: If required actions can be grouped and separated in different module and then imported and exported form the index file .&lt;/p&gt;
+&lt;h4 id=&quot;sagas&quot;&gt;sagas&lt;/h4&gt;
+&lt;p&gt;Since we use redux saga middleware for asynchronous data handling , the module level sagas are specified in the sagas folder.the index file in sagas export all sagas belongs to the module.&lt;/p&gt;
+
+&lt;h3 id=&quot;2adding--registering-a-new-module&quot;&gt;2.Adding / Registering a New Module&lt;/h3&gt;
+&lt;p&gt;When ever we add a new block/module of functionality to the application , It needs to be registered with the root application. The advantage of using this approach is each module level functional aspects are grouped into a module folder and in future if the application complexity increases and the module has to be separated into a new project is will easy to separate out.&lt;/p&gt;
+
+&lt;h3 id=&quot;3registering-module-routes-to-the-application&quot;&gt;3.Registering Module Routes to the application&lt;/h3&gt;
+&lt;p&gt;The index file in the /src/routes/ directory imports and registers all the module level routes to the root application. It is important to note that AppBaseRoutes has to be placed always at last to handle non matching routes and error pages.&lt;/p&gt;
+
+&lt;h3 id=&quot;4registering-module-reducer-to-the-application-store&quot;&gt;4.Registering Module Reducer to the application store&lt;/h3&gt;
+&lt;h4 id=&quot;registering-sagas&quot;&gt;Registering Sagas&lt;/h4&gt;
+&lt;p&gt;The sagas file in the /src/store/ directory imports and registers all the module level sagas to the root application.The module level sagas must be imported and added to the application sagas.&lt;/p&gt;
+
+&lt;h4 id=&quot;registering-reducer&quot;&gt;Registering Reducer&lt;/h4&gt;
+&lt;p&gt;The reducers file in the /src/store/ directory imports and combines all the module level reducers to the root application.The module level reducers must be imported and added to the combineReducers method in the application reducer.&lt;/p&gt;</content><author><name></name></author><summary type="html">You might find a number of starter-kits/boilerplate templates to bootstrap and application. The CRA starter kit is an extension of Create React App with necessary configuration and tool support</summary></entry><entry><title type="html">Starter Kit : REST API development setup using express mongo and Mongoose</title><link href="/starter-kit/2019/09/20/starter-kit-express-mongo.html" rel="alternate" type="text/html" title="Starter Kit : REST API development setup using express mongo and Mongoose" /><published>2019-09-20T14:33:48-07:00</published><updated>2019-09-20T14:33:48-07:00</updated><id>/starter-kit/2019/09/20/starter-kit-express-mongo</id><content type="html" xml:base="/starter-kit/2019/09/20/starter-kit-express-mongo.html">&lt;p&gt;This is a modern boilerplate application for building REST ful APIs Micro-service in Node.js using express and mongo DB mongoose in ES6 with code coverage and other developer tools.&lt;/p&gt;
+
+&lt;p&gt;This boiler plate &lt;a href=&quot;https://github.com/bijeshp/starter-kit-express-mongo-api&quot;&gt;template&lt;/a&gt; has following tools and technologies setup for easy development&lt;/p&gt;
+
+&lt;h2 id=&quot;es6-support-using-esm&quot;&gt;ES6 Support Using ESM&lt;/h2&gt;
+
+&lt;p&gt;Most of the commonly used ES6 features are supported by Node version 10.15.3, ES6 module loading specifications are not yet a standard in the node version. ESM is a module loader that transforms es modules at run time instead of transpiling them.(Typically we use babel for command line transpiling ES6 code to ES5)&lt;/p&gt;
+
+&lt;h2 id=&quot;code-quality&quot;&gt;Code Quality&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Code Formatting&lt;/strong&gt; - Code formatting is done using &lt;a href=&quot;https://prettier.io/&quot;&gt;Prettier&lt;/a&gt;&lt;br /&gt;
+&lt;strong&gt;Pre-commit hooks&lt;/strong&gt; - &lt;a href=&quot;https://github.com/typicode/husky#readme&quot;&gt;Husky&lt;/a&gt; Ensures the code is formatted as per the development standard for every commit&lt;/p&gt;
+
+&lt;h2 id=&quot;code-instrumentation&quot;&gt;Code Instrumentation&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/istanbuljs/nyc#readme&quot;&gt;Istanbul&lt;/a&gt; instruments your ES5 and ES2015+ JavaScript code with line counters, so that we can track how well your unit-tests exercise your codebase.The nyc command-line-client for Istanbul works well with most of the javascript frameworks.&lt;/p&gt;
+
+&lt;h3 id=&quot;documentation&quot;&gt;Documentation&lt;/h3&gt;
+
+&lt;p&gt;jsdoc has been used for API documentation
+To set this locally install jsdoc globally or as a dev dependency as part of the setup&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;npm install -g jsdoc&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Run the following command to generate documentation for the code base
+&lt;code class=&quot;highlighter-rouge&quot;&gt;yarn build-docs&lt;/code&gt;
+Run the following command to generate documentation for a single file (yourJavaScriptFile)&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;jsdoc yourJavaScriptFile.js&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;unit-testing&quot;&gt;Unit Testing&lt;/h3&gt;
+
+&lt;p&gt;Chai and Mocha are used for writing unit test cases&lt;br /&gt;
+Assertion with Chai provides natural language assertions, expressive and readable style.&lt;/p&gt;
+
+&lt;h2 id=&quot;developing-with-starter-kit&quot;&gt;Developing With Starter Kit&lt;/h2&gt;
+&lt;p&gt;Checkout the code from following git repo to start developing with the template&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;https://github.com/bijeshp/starter-kit-express-mongo-api.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;code-organization&quot;&gt;Code Organization&lt;/h2&gt;
+
+&lt;p&gt;&lt;img width=&quot;663&quot; alt=&quot;Screen Shot 2019-09-24 at 3 50 07 PM&quot; src=&quot;https://user-images.githubusercontent.com/7260229/65556455-8d893500-dee4-11e9-926c-e32d2e2890b2.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Read more about setting up and running the application &lt;a href=&quot;https://github.com/bijeshp/starter-kit-express-mongo-api/edit/master/README.md&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">This is a modern boilerplate application for building REST ful APIs Micro-service in Node.js using express and mongo DB mongoose in ES6 with code coverage and other developer tools.</summary></entry></feed>

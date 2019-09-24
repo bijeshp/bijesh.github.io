@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Starter Kit: A fully configured Create React App | Bijesh’s Blogs</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Starter Kit: A fully configured Create React App" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="You might find a number of starter-kits/boilerplate templates to bootstrap and application. The CRA starter kit is an extension of Create React App with necessary configuration and tool support" />
+<meta property="og:description" content="You might find a number of starter-kits/boilerplate templates to bootstrap and application. The CRA starter kit is an extension of Create React App with necessary configuration and tool support" />
+<link rel="canonical" href="/starter-kit/2019/09/24/starter-kit-cra-configured.html" />
+<meta property="og:url" content="/starter-kit/2019/09/24/starter-kit-cra-configured.html" />
+<meta property="og:site_name" content="Bijesh’s Blogs" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-09-24T14:33:48-07:00" />
+<script type="application/ld+json">
+{"description":"You might find a number of starter-kits/boilerplate templates to bootstrap and application. The CRA starter kit is an extension of Create React App with necessary configuration and tool support","headline":"Starter Kit: A fully configured Create React App","dateModified":"2019-09-24T14:33:48-07:00","datePublished":"2019-09-24T14:33:48-07:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"/starter-kit/2019/09/24/starter-kit-cra-configured.html"},"url":"/starter-kit/2019/09/24/starter-kit-cra-configured.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Bijesh's Blogs" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Bijesh&#39;s Blogs</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Starter Kit: A fully configured Create React App </h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-09-24T14:33:48-07:00" itemprop="datePublished">Sep 24, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>You might find a number of starter-kits/boilerplate templates to bootstrap and application. The CRA starter kit is an extension of <a href="https://github.com/facebook/create-react-app">Create React App</a> with necessary configuration and tool support</p>
+
+<p>It uses following tools and technologies from the react ecosystem.</p>
+
+<h2 id="technologies-and-libraries">Technologies and Libraries</h2>
+<ul>
+  <li>Application State : Redux</li>
+  <li>Async Data Management : Redux Saga</li>
+  <li>Declarative Routing : DOM bindings for React Router react-router-dom</li>
+  <li>Static Type Checking :Flow</li>
+  <li>REST API handling :Axios</li>
+</ul>
+
+<h2 id="setting-up-the-starter-kit">Setting up the Starter Kit</h2>
+<p>Download the starter-kit source files from the following <a href="https://github.com/bijeshp/starter-kit-create-react-app.git">link</a>
+<code class="highlighter-rouge">https://github.com/bijeshp/starter-kit-create-react-app.git</code></p>
+
+<h2 id="code-organization">Code Organization</h2>
+
+<p><img width="831" alt="Screen Shot 2019-09-24 at 3 14 52 PM" src="https://user-images.githubusercontent.com/7260229/65555185-b3143f80-dee0-11e9-92ea-47f90fa4da83.png" /></p>
+
+<h2 id="developing-with-the-starter-kit">Developing with the Starter Kit</h2>
+
+<p>Basic Conventions</p>
+<h3 id="1-modules-">1. Modules :</h3>
+<p>A module is a logical grouping of related functionality, which maintain a namespace for data , routes and other related functionalities. A module typically contains the following parts</p>
+<h4 id="pages">Pages</h4>
+<p>Defines a Container component and mounted on a route, Pages are the only connected components in a module. Data will be passed to the child components via props.All the page level components are defined in the components folder of each page.
+Note : Its import to connect the reqStatus, isLoading,serviceError properties in each page as standard which helps to handle application state during the asynchronous data fetching.</p>
+<h4 id="indexjs">index.js</h4>
+<p>Index.js of the module exports all the pages in the module. For example</p>
+<h4 id="routesjs">routes.js</h4>
+<p>routes.js registers the routing for the module pages and the respective components to be mounted on the routes. For example</p>
+<h4 id="reducerjs">reducer.js</h4>
+<p>This defines the module reducer. Every reducer must contain following properties as default which helps to handle the application state during the asynchronous data fetching</p>
+<h4 id="actions">actions</h4>
+<p>The <em>action.type.js </em>file defines the constants for all action types of the modules and the index.js file in the action directory defines all the actions for the module Note: If required actions can be grouped and separated in different module and then imported and exported form the index file .</p>
+<h4 id="sagas">sagas</h4>
+<p>Since we use redux saga middleware for asynchronous data handling , the module level sagas are specified in the sagas folder.the index file in sagas export all sagas belongs to the module.</p>
+
+<h3 id="2adding--registering-a-new-module">2.Adding / Registering a New Module</h3>
+<p>When ever we add a new block/module of functionality to the application , It needs to be registered with the root application. The advantage of using this approach is each module level functional aspects are grouped into a module folder and in future if the application complexity increases and the module has to be separated into a new project is will easy to separate out.</p>
+
+<h3 id="3registering-module-routes-to-the-application">3.Registering Module Routes to the application</h3>
+<p>The index file in the /src/routes/ directory imports and registers all the module level routes to the root application. It is important to note that AppBaseRoutes has to be placed always at last to handle non matching routes and error pages.</p>
+
+<h3 id="4registering-module-reducer-to-the-application-store">4.Registering Module Reducer to the application store</h3>
+<h4 id="registering-sagas">Registering Sagas</h4>
+<p>The sagas file in the /src/store/ directory imports and registers all the module level sagas to the root application.The module level sagas must be imported and added to the application sagas.</p>
+
+<h4 id="registering-reducer">Registering Reducer</h4>
+<p>The reducers file in the /src/store/ directory imports and combines all the module level reducers to the root application.The module level reducers must be imported and added to the combineReducers method in the application reducer.</p>
+
+
+  </div><a class="u-url" href="/starter-kit/2019/09/24/starter-kit-cra-configured.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Bijesh&#39;s Blogs</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Bijesh&#39;s Blogs</li><li><a class="u-email" href="mailto:bijeshp009@gmail.com">bijeshp009@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/bijeshp"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">bijeshp</span></a></li><li><a href="https://www.twitter.com/bijeshp009"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">bijeshp009</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Blog posts and Code samples.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
