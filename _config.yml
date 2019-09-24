@@ -28,7 +28,7 @@ twitter_username: bijeshp009
 github_username:  bijeshp
 
 # Build settings
-theme: jekyll-theme-minimal
+theme: jekyll-theme-time-machine
 plugins:
   - jekyll-feed
 
