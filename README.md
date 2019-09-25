@@ -1,2 +1,2 @@
-# blogs1
-Blog POsts
+# blogs
+Blog Posts
